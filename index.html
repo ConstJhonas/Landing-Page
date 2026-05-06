@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kit de Grafomotricidade - Aprender Brincando em Casa</title>
+    <style>
+        @import url('https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@400,500,700,800&f[]=satoshi@400,500,700,900&display=swap');
+
+        :root {
+            --primary: #ff5f57;
+            --secondary: #b9defe;
+            --accent: #22c55e;
+            --bg-light: #f4f4f5;
+            --bg-muted: #b7c6c2;
+            --black: #000000;
+            --white: #ffffff;
+            --shadow: 4px 4px 0px 0px #000000;
+            --shadow-lg: 8px 8px 0px 0px #000000;
+            --shadow-sm: 2px 2px 0px 0px #000000;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            font-family: 'Satoshi', sans-serif;
+            color: var(--black);
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, .font-display {
+            font-family: 'Cabinet Grotesk', sans-serif;
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1024px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .nb-shadow { box-shadow: var(--shadow); }
+        .nb-shadow-lg { box-shadow: var(--shadow-lg); }
+        .nb-shadow-sm { box-shadow: var(--shadow-sm); }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 2rem;
+            background-color: var(--primary);
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 1.25rem;
+            border: 2px solid var(--black);
+            box-shadow: var(--shadow);
+            transition: transform 0.1s;
+            text-transform: uppercase;
+            cursor: pointer;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .btn:active {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px 0px #000000;
+        }
+
+        /* Header / Hero */
+        .hero {
+            background-color: #b9defe;
+            background-image: radial-gradient(#00000022 1px, transparent 1px);
+            background-size: 20px 20px;
+            padding: 3rem 1rem 4rem;
+            text-align: center;
+            border-bottom: 2px solid var(--black);
+        }
+
+        .badge-secure {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--white);
+            border: 2px solid var(--black);
+            padding: 0.25rem 1rem;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 8vw, 4rem);
+            margin-bottom: 1.5rem;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero p {
+            font-size: 1.125rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            font-weight: 500;
+        }
+
+        .hero-image {
+            max-width: 600px;
+            width: 100%;
+            margin: 2rem auto 0;
+            display: block;
+        }
+
+        /* Marquee-like bar */
+        .marquee {
+            background: var(--white);
+            border-bottom: 2px solid var(--black);
+            padding: 1rem 0;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .marquee-content {
+            display: inline-flex;
+            gap: 3rem;
+            font-weight: 700;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+        }
+
+        /* Sections */
+        section {
+            padding: 4rem 1rem;
+            border-bottom: 2px solid var(--black);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        /* Sinais Section */
+        .sinais-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        @media (min-width: 768px) {
+            .sinais-grid { grid-template-columns: 1fr 1.2fr; }
+        }
+
+        .sinais-list {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .sinais-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            background: var(--bg-light);
+            border: 2px solid var(--black);
+            padding: 0.75rem 1rem;
+            margin-bottom: 0.75rem;
+            font-weight: 700;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .sinais-icon {
+            background: var(--primary);
+            color: var(--white);
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--black);
+            flex-shrink: 0;
+        }
+
+        /* Testimonials */
+        .bg-muted { background-color: var(--bg-muted); }
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .testimonials-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        .testimonial-card {
+            background: var(--white);
+            border: 2px solid var(--black);
+            padding: 1.5rem;
+            box-shadow: var(--shadow-lg);
+            border-radius: 0 1.5rem 0 1.5rem;
+        }
+
+        .testimonial-tag {
+            background: var(--secondary);
+            border: 2px solid var(--black);
+            padding: 0.25rem 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .author-img {
+            width: 48px;
+            height: 48px;
+            border: 2px solid var(--black);
+            border-radius: 50%;
+        }
+
+        /* Bonus Section */
+        .bonus-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .bonus-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        .bonus-card {
+            background: var(--white);
+            border: 2px solid var(--black);
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .bonus-tag {
+            background: var(--accent);
+            color: var(--white);
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            font-weight: 800;
+            font-size: 0.75rem;
+            border: 2px solid var(--black);
+            margin-bottom: 1rem;
+        }
+
+        /* Pricing Card */
+        .pricing-section {
+            background: #fff;
+            padding: 5rem 1rem;
+        }
+
+        .pricing-card {
+            max-width: 500px;
+            margin: 0 auto;
+            border: 4px solid var(--black);
+            padding: 2rem;
+            box-shadow: 12px 12px 0px 0px #000;
+            background: #fff;
+        }
+
+        .pricing-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-list {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px dashed #ccc;
+            font-weight: 500;
+        }
+
+        .price-old {
+            text-align: center;
+            text-decoration: line-through;
+            color: #666;
+            font-size: 1.25rem;
+        }
+
+        .price-new {
+            text-align: center;
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: var(--black);
+            margin-bottom: 1rem;
+        }
+
+        /* FAQ */
+       /* Estilização do Container do FAQ */
+.faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    border: 2px solid #000;
+    margin-bottom: 1rem;
+    background: #fff;
+    box-shadow: 4px 4px 0px 0px #000; /* Mantendo o estilo visual da página */
+    overflow: hidden;
+}
+
+/* Esconde o checkbox real */
+.faq-item input[type="checkbox"] {
+    display: none;
+}
+
+/* Estilização da Pergunta (Label) */
+.faq-question {
+    padding: 1.25rem 1.5rem;
+    font-weight: 800;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+}
+
+/* Estilização do ícone + */
+.faq-question span {
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
+    display: inline-block;
+}
+
+/* Estilização da Resposta (Conteúdo escondido) */
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease-out;
+    padding: 0 1.5rem;
+    background: #f9f9f9;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* --- A MÁGICA DO FUNCIONAMENTO --- */
+
+/* Quando clicado: Expande a resposta */
+.faq-item input[type="checkbox"]:checked ~ .faq-answer {
+    max-height: 300px; /* Valor suficiente para o texto */
+    padding: 1rem 1.5rem 1.5rem;
+    border-top: 2px solid #000;
+}
+
+/* Quando clicado: Gira o ícone de + para virar um x ou indicar aberto */
+.faq-item input[type="checkbox"]:checked ~ .faq-question span {
+    transform: rotate(45deg);
+}
+
+/* Efeito de hover para feedback visual */
+.faq-question:hover {
+    background-color: #f4f4f5;
+}
+
+
+        /* Footer */
+        footer {
+            background: var(--bg-light);
+            padding: 3rem 1rem;
+            text-align: center;
+            border-top: 2px solid var(--black);
+        }
+
+        /* Utils */
+        .text-center { text-align: center; }
+        .mb-4 { margin-bottom: 1rem; }
+        .mt-4 { margin-top: 1rem; }
+        .highlight { font-weight: 800; text-decoration: underline; }
+
+        img { max-width: 100%; height: auto; border: 2px solid var(--black); }
+        .no-border { border: none; }
+
+    </style>
+</head>
+<body>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="container">
+            <div class="badge-secure">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                Compra 100% segura e protegida
+            </div>
+            <h1>Seu filho não precisa de biscoitos na lancheira, ele precisa de alimentos que nutrem de verdade</h1>
+            <p>Descubra a solução que <strong>centenas de mães</strong> já usam para transformar a rotina alimentar dos filhos em apenas <strong>10 minutos por dia</strong> — sem precisar ser especialista</p>
+            <a href="#" class="btn">QUERO COMEÇAR AGORA</a>
+            <p style="margin-top: 1.5rem; font-size: 0.875rem; font-weight: 700;">🔥 Promoção por tempo limitado</p>
+            <img src="./imagens/img1.png" alt="Kai-receitas" class="hero-image no-border">
+        </div>
+    </header>
+
+    <!-- Marquee -->
+    <div class="marquee">
+        <div class="marquee-content">
+            <span>• Lanches rápidos • Café da manhã infantil • Lancheira saudável • Almoço nutritivo • Jantar leve • Doces saudáveis • Bebidas naturais • Snacks saudáveis • Introdução alimentar • Receitas especiais • Receitas para bebês • Receitas congelaveis •</span>
+        </div>
+    </div>
+
+    <!-- Sinais Section -->
+    <section>
+        <div class="container">
+            <div class="sinais-grid">
+                <div class="nb-shadow-lg" style="background: #fff; padding: 0.75rem;">
+                    <img src="./imagens/img crianca.png" alt="Criança escrevendo">
+                </div>
+                <div>
+                    <span style="background: var(--primary); color: white; padding: 0.25rem 0.75rem; font-weight: 800; font-size: 0.75rem; border: 2px solid #000; display: inline-block; margin-bottom: 1rem;" class="nb-shadow-sm">VOCÊ JÁ PERCEBEU ESSES SINAIS?</span>
+                    <h2 style="font-size: 2.25rem; margin-bottom: 1.5rem;">Se não agir agora, isso pode virar um bloqueio permanente.</h2>
+                    <ul class="sinais-list">
+                        <li class="sinais-item"><span class="sinais-icon">×</span> Falta de energia no dia a dia</li>
+                        <li class="sinais-item"><span class="sinais-icon">×</span> Baixo ganho ou perda de peso</li>
+                        <li class="sinais-item"><span class="sinais-icon">×</span> Sono desregulado</li>
+                        <li class="sinais-item"><span class="sinais-icon">×</span> Dificuldade de concentração</li>
+                        <li class="sinais-item"><span class="sinais-icon">×</span> Problemas intestinais</li>
+                        <li class="sinais-item"><span class="sinais-icon">×</span> Irritabilidade frequente</li>
+                    </ul>
+                    <div style="background: var(--secondary); border: 2px solid #000; padding: 1.5rem;" class="nb-shadow">
+                        <p><strong>A boa notícia:</strong> isso tem solução — e é necessário um plano e constancia. Com o estímulo certo, seu filho irá se sentir mais <strong>saudável e disposto</strong>.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="bg-muted">
+        <div class="container">
+            <div class="text-center mb-4">
+                <span style="background: #fff; border: 2px solid #000; padding: 0.5rem 1rem; font-weight: 800; font-size: 0.75rem; display: inline-flex; align-items: center; gap: 0.5rem;" class="nb-shadow-sm">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    +1.300 FAMÍLIAS JÁ TRANSFORMARAM A ROTINA ALIMENTAR DOS FILHOS
+                </span>
+            </div>
+            <h2 class="section-title">Veja o que dizem quem já usou:</h2>
+            <div class="testimonials-grid">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-tag">✅ EM 2 DIAS JÁ VI RESULTADO</div>
+                    <p class="testimonial-text">"Achei que seria dificil já que não sou muito boa na cozinha, mas tudo é muito bem explicado. Em 2 dias meu filho já estava apaixonado pelo bolinho de brócolis, agora me pede todos os dias"</p>
+                    <br>
+                    <div class="testimonial-author">
+                        <img src="./imagens/mae1.jpg" alt="Ana" class="author-img">
+                        <div>
+                            <p style="font-weight: 800;">Karol Mendes</p>
+                            <p style="font-size: 0.75rem;">Mãe de 1 menino autista de 11 anos</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-tag">✅ ECONOMIZEI NO REFRIGERANTE</div>
+                    <p class="testimonial-text">"Uso com meus dois filhos. Antes só bebiam refrigerante, agora estão apaixonados no suco de acerola — Nunca mais gastei com coca-cola."</p>
+                    <br>
+                    <br>
+                    <br>
+                    <div class="testimonial-author">
+                        <img src="./imagens/mae2.webp" alt="Marcia" class="author-img">
+                        <div>
+                            <p style="font-weight: 800;">Adriana Diniz</p>
+                            <p style="font-size: 0.75rem;">Mãe de gêmeos de 9 anos</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-tag">✅ QUALQUER PAI CONSEGUE APLICAR</div>
+                    <p class="testimonial-text">"Minha filha mal tocava na lancheira da escola. Comprei sem acreditar muito. Depois de 2 semanas, ela chega em casa pedindo mais da tortinha gostosa (torta de abóbora). QUALQUER pai consegue fazer"</p>
+                    <div class="testimonial-author">
+                        <img src="./imagens/pai1.jpg" alt="Ricardo" class="author-img">
+                        <div>
+                            <p style="font-weight: 800;">Antonio Silva</p>
+                            <p style="font-size: 0.75rem;">Pai de menina de 5 anos</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bonus Section -->
+    <section>
+        <div class="container">
+            <p class="text-center" style="font-weight: 700; margin-bottom: 1rem;">Ao garantir hoje, você ainda ganha de presente...</p>
+            <h2 class="section-title">Leve TUDO isso junto — sem pagar nada a mais</h2>
+            <div class="bonus-grid">
+                <div class="bonus-card">
+                    <span class="bonus-tag">GRÁTIS</span>
+                    <h3 style="margin-bottom: 1rem;">O Livro de Hogwarts</h3>
+                    <p style="font-size: 0.875rem; margin-bottom: 1rem;">Receitas divertidas inspiradas na franquia de filme Harry Potter</p>
+                    <p><span style="text-decoration: line-through; color: #666;">R$ 27,00</span> <span style="font-weight: 800; color: var(--accent);">R$ 0,00</span></p>
+                </div>
+                <div class="bonus-card">
+                    <span class="bonus-tag">GRÁTIS</span>
+                    <h3 style="margin-bottom: 1rem;">Guia alimentar para crianças autistas</h3>
+                    <p style="font-size: 0.875rem; margin-bottom: 1rem;">Receitas extras com temas que o seu filho(a) ama: Sonic, Naruto, Roblox, Minecraft, etc.</p>
+                    <p><span style="text-decoration: line-through; color: #666;">R$ 19,90</span> <span style="font-weight: 800; color: var(--accent);">R$ 0,00</span></p>
+                </div>
+                <div class="bonus-card">
+                    <span class="bonus-tag">GRÁTIS</span>
+                    <h3 style="margin-bottom: 1rem;">Adesivos Personalizados</h3>
+                    <p style="font-size: 0.875rem; margin-bottom: 1rem;">Para imprimir e colar na lancheira do seu pequenino. Ele irá se sentir especial!</p>
+                    <p><span style="text-decoration: line-through; color: #666;">R$ 14,90</span> <span style="font-weight: 800; color: var(--accent);">R$ 0,00</span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Activities Preview -->
+
+
+    <!-- Pricing Section -->
+    <section class="pricing-section" id="checkout">
+        <div class="container">
+            <h2 class="section-title">Mude a rotina do seu filho agora! </h2>
+            <p class="text-center" style="margin-bottom: 2rem; font-weight: 600;">Acesso imediato • Pagamento único • Sem mensalidades</p>
+            
+            <div class="pricing-card">
+                <div class="pricing-header">
+                    <span style="background: #ffbc2e; border: 2px solid #000; padding: 0.25rem 1rem; font-weight: 800; font-size: 0.75rem; margin-bottom: 1rem; display: inline-block;">🔥 OFERTA ESPECIAL</span>
+                    <h3>Guia Alimentar - Alimentação especial</h3>
+                    <p style="font-size: 0.875rem; font-weight: 600;">+350 receitas com todos os bônus inclusos</p>
+                </div>
+                
+                <ul class="pricing-list">
+                    <li class="pricing-item"><span>Adesivos Personalizados</span> <span>R$ 14,90</span></li>
+                    <li class="pricing-item"><span>Guia Alimentar para Crianças Autistas</span> <span>R$ 19,90</span></li>
+                    <li class="pricing-item"><span>O Livro de Receitas de Hogwarts</span> <span>R$ 27,00</span></li>
+                    <li class="pricing-item"><span>🎁 4 Guias de Artesanato - Crochê</span> <span style="color: var(--accent);">GRÁTIS</span></li>
+                    <li class="pricing-item"><span>🎁 +30 Cardapios Para a Semana</span> <span style="color: var(--accent);">GRÁTIS</span></li>
+                    <li class="pricing-item"><span>🎁 Atualizações Mensais Com Novas Receitas</span> <span style="color: var(--accent);">GRÁTIS</span></li>
+                    <li class="pricing-item"><span>🎁 Aplicativo de Celular Liberado com as receitas!</span> <span style="color: var(--accent);">GRÁTIS</span></li>
+
+                </ul>
+                
+                <div class="price-old">De R$ 112,00</div>
+                <div class="price-new">R$ 9,90</div>
+                
+                <div style="text-align: center; margin-bottom: 1.5rem;">
+                    <p style="font-weight: 800; color: var(--primary);">OFERTA POR TEMPO LIMITADO</span></p>
+                </div>
+                
+                <a href="#" class="btn" style="width: 100%; max-width: none;">QUERO O TODO O MATERIAL</a>
+                
+                <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 1.5rem; font-size: 0.75rem; font-weight: 700;">
+                    <span>🔒 Compra segura</span>
+                    <span>🛡️ Dados protegidos</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section style="background: #f4f4f5; padding: 4rem 1rem;">
+    <div class="container">
+        <h2 class="section-title" style="text-align: center; margin-bottom: 2.5rem; font-size: 2.5rem; font-weight: 800;">Perguntas Frequentes</h2>
+        
+        <div class="faq-container">
+            
+            <!-- Item 1 -->
+            <div class="faq-item">
+                <input type="checkbox" id="faq-1">
+                <label class="faq-question" for="faq-1">
+                    Para qual idade o Guia da Kai é indicado? <span>+</span>
+                </label>
+                <div class="faq-answer">
+                    A solução é ideal para crianças de 2 a 13 anos. As receita são progressivas, introdução alimentar em bebês até a criança mais seletiva, se adaptando ao nível de desenvolvimento do seu filho.
+                </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="faq-item">
+                <input type="checkbox" id="faq-2">
+                <label class="faq-question" for="faq-2">
+                    Preciso saber cozinhar para iniciar? <span>+</span>
+                </label>
+                <div class="faq-answer">
+                    De jeito nenhum! O guia foi pensado para ser prático e intuitivo. As orientações são passo a passo, perfeitas para mães com a rotina cheia
+                </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="faq-item">
+                <input type="checkbox" id="faq-3">
+                <label class="faq-question" for="faq-3">
+                    Como recebo o material? <span>+</span>
+                </label>
+                <div class="faq-answer">
+                    Imediatamente após a confirmação do pagamento, você receberá um e-mail com todas as orientações e o link para download de todo o material.
+                </div>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="faq-item">
+                <input type="checkbox" id="faq-4">
+                <label class="faq-question" for="faq-4">
+                    Posso imprimir o guia? <span>+</span>
+                </label>
+                <div class="faq-answer">
+                    Sim! O material foi otimizado para impressão doméstica. Você pode imprimir o guia completo ou apenas as páginas que desejar utilizar no momento. Podendo também utilizar o Aplicativo.
+                </div>
+            </div>
+
+            <!-- Item 5 -->
+            <div class="faq-item">
+                <input type="checkbox" id="faq-5">
+                <label class="faq-question" for="faq-5">
+                    Funciona mesmo? Em quanto tempo vejo resultado? <span>+</span>
+                </label>
+                <div class="faq-answer">
+                    Sim! Temos diversos relatos de famílias informando uma melhora significativa no interesse, energia e humor das crianças em menos de 1 semana.
+                </div>
+            </div>
+
+            <!-- Item 6 -->
+            <div class="faq-item">
+                <input type="checkbox" id="faq-6">
+                <label class="faq-question" for="faq-6">
+                    O pagamento é seguro? <span>+</span>
+                </label>
+                <div class="faq-answer">
+                    Totalmente seguro. Utilizamos as maiores e mais confiáveis plataformas de pagamento do Brasil, garantindo que seus dados estejam 100% protegidos e criptografados.
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+    <!-- Final CTA -->
+    <section style="background: #b9defe; text-align: center;">
+        <div class="container">
+            <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem;">Você só precisa se organizar melhor, e isso começa agora!</h2>
+            <p style="font-size: 1.25rem; margin-bottom: 2rem; max-width: 700px; margin-left: auto; margin-right: auto;">Por menos que o preço de um lanche, você dá ao seu filho uma alimentação saudável e divertida, afinal, ele merece!</p>
+            <a href="#" class="btn">QUERO O MATERIAL COMPLETO AGORA</a>
+            <div style="margin-top: 2rem; display: flex; justify-content: center; gap: 2rem; font-size: 0.75rem; font-weight: 700; opacity: 0.7;">
+                <span>Compra 100% segura</span>
+                <span>Acesso imediato</span>
+                <span>Suporte por e-mail</span>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p style="font-weight: 700; font-size: 0.875rem;">© 2024 Kai's Receitas - Alimentação Especial. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
